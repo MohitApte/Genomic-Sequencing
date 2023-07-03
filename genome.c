@@ -4,7 +4,7 @@
 #include <limits.h>
 #include "genome.h"
 
-
+// Push to the stack
 void push(stack **top, dict *key)
 {
     stack *keynode = (stack *)malloc(sizeof(stack));
@@ -20,6 +20,7 @@ void push(stack **top, dict *key)
     return;
 }
 
+// pop from the stack
 dict **pop(stack **top)
 {
     if (*top == NULL)
@@ -35,20 +36,25 @@ dict **pop(stack **top)
 
 //dict *answer = NULL;
 
+// find the prefix(0:k-1) to form the source node
 void prefix(char **pre, char *window, int len)
 {
     strncpy(*pre, window + 0, len);
 }
 
+// find the suffix(1:k) to form the sink/destination node
 void suffix(char **suf, char *window, int len)
 {
     strncpy(*suf, window + 1, len);
 }
+
+// slice the input into k mers
 void slice(char **window, char *text, int start, int k)
 {
     strncpy(*window, text + start, k);
 }
 
+// add value to a particular key in adjacency list
 void add_value(dict **answer, char *pre1, char *pre2, char *suf1, char *suf2)
 {
     dict *temp = *answer;
@@ -80,6 +86,7 @@ void add_value(dict **answer, char *pre1, char *pre2, char *suf1, char *suf2)
     }
 }
 
+// add key value pair to the adjacency list
 void add_key_value(dict **answer, char *pre1, char *pre2, char *suf1, char *suf2)
 {
     if (*answer == NULL)
@@ -109,6 +116,7 @@ void add_key_value(dict **answer, char *pre1, char *pre2, char *suf1, char *suf2
     }
 }
 
+// add key to the adjacency list
 void add_key(dict **answer, char *pre1, char *pre2){
     if (*answer == NULL)
     {
@@ -135,6 +143,7 @@ void add_key(dict **answer, char *pre1, char *pre2){
     }
 }
 
+// swap keys for bubble sort
 dict *swapkey(dict *ptr1, dict *ptr2)
 {
     dict *temp = ptr2->next;
@@ -143,6 +152,7 @@ dict *swapkey(dict *ptr1, dict *ptr2)
     return ptr2;
 }
 
+// implement bubble sort on keys
 void bubbleSortkey(dict **head, int count)
 {
     dict **h;
@@ -180,6 +190,7 @@ void bubbleSortkey(dict **head, int count)
     }
 }
 
+// swap values for bubble sort
 value_node *swapvalue(value_node *ptr1, value_node *ptr2)
 {
     value_node *temp = ptr2->next;
@@ -188,6 +199,7 @@ value_node *swapvalue(value_node *ptr1, value_node *ptr2)
     return ptr2;
 }
 
+// implement bubble sort on values
 void bubbleSortvalue(value_node **head, int count)
 {
     value_node **h;
@@ -222,6 +234,7 @@ void bubbleSortvalue(value_node **head, int count)
     }
 }
 
+// check if given nodes are same
 int check(dict *answer, char *pre1, char *pre2)
 {
     dict *temp = answer;
@@ -239,6 +252,7 @@ int check(dict *answer, char *pre1, char *pre2)
     return 0;
 }
 
+// form the de bruijn graph
 void de_bruijn(dict ** answer,int k, int d)
 {
     char *text[1000];
@@ -321,6 +335,7 @@ void de_bruijn(dict ** answer,int k, int d)
     printf("%s", string);
 }
 
+// find the start node for the euler path of the de bruijn graph
 void startnode(dict *answer, dict **temp1)
 {
     dict *temp = answer;
