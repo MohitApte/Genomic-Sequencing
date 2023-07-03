@@ -14,11 +14,16 @@ int main()
     int k;
     int d;
     scanf("%d %d\n", &k, &d);
+    
+    // Make the de bruijn graph
     de_bruijn(&answer,k, d);
     
     dict *sn = NULL;
+
+    // find the start node for the euler path
     startnode(answer, &sn);
-    //printf("%s|%s", sn->key1, sn->key2);
+
+    // find the euler path
     stack *top = NULL;
     push(&top, sn);
     char *ep = (char *)malloc(sizeof(char)*INT_MAX);
@@ -51,9 +56,6 @@ int main()
             }
             st->value = st->value->next;
         }else{
-          
-           //printf("\n %s \n",st->key1);
-            //strcat(ep,st->key1);
             pop(&top);
             
             if(top){
@@ -104,6 +106,8 @@ int main()
     strncpy(temp15,string1,strlen(string1)-len);
     strcat(stringanswer,temp15);
     strcat(stringanswer,string2);
+
+    // print the euler path
     printf("%s\n",stringanswer);
     
 }
