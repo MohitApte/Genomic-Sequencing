@@ -1,0 +1,30 @@
+Reconstruct a string from its paired composition.
+
+Input: Integers k and d followed by a collection of paired k-mers PairedReads.
+
+Output: A string Text with (k,d)-mer composition equal to PairedReads. (If multiple answers exist, you may return any one.)
+
+Since increasing read length presents a difficult experimental problem, biologists have suggested an indirect way of increasing read length by generating read-pairs, which are pairs of reads separated by a fixed distance d in the genome.
+
+You can think about a read-pair as a long “gapped” read of length k+d+k whose first and last k-mers are known but whose middle segment of length d is unknown. Nevertheless, read-pairs contain more information than k-mers alone, and so we should be able to use them to improve our assemblies. If only you could infer the nucleotides in the middle segment of a read-pair, you would immediately increase the read length from k to 2k+d.
+
+Given a string Text, a (k,d)-mer is a pair of k-mers in Text separated by distance d. We use the notation (Pattern1|Pattern2) to refer to a (k,d)-mer whose k-mers are Pattern1 and Pattern2. The (k,d)-mer composition of Text, denoted PairedCompositionk,d(Text), is the collection of all (k,d)- mers in Text (including repeated (k,d)-mers).
+
+Input Format. The first line of the input contains k followed by d (separated by spaces). The remaining lines of the input contain PairedCompositionk,d(Text), with a single (k,d)-mer on each line in the format Pattern1|Pattern2. For example, the (k,d)-mer (AAA|TTT) would be represented as “AAA|TTT” (no quotes).
+
+Output Format. A string Text with (k,d)-mer composition equal to PairedReads. (If multiple answers exist, you may return any one.)
+
+Constraints. |k| ≤ 100; |d| ≤ 10; |Text| ≤ 1,000.
+
+Input:
+
+3 1
+TCA|GCA
+TTC|TGC
+AAT|CAT
+ATT|ATG
+Output:
+
+AATTCATGCA
+
+This dataset makes sure that your code doesn’t require the input PairedComposition to be organized in any particular order. In the previous Gapped Genome Path String Problem the input (k,d)-mers were organized in the ordered that they appeared in Text. That is not necessarily the case in this problem. If your output doesn’t match the correct output there is either a mistake in your construction of the de Bruijn graph for the input or your method of finding an Eulerian path through the de Bruijn graph. Constructing a de Bruijn graph from (k,d)-mers is the same as constructing one from k-mers except that two different (k-1)-mers need to match before an edge can be drawn between nodes. If you have previously solved the String Reconstruction Problem and the Eulerian Path Problem it’s unlikely that incorrect output is due to an error in the finding of an Eulerian path in your de Bruijn graph. Make sure that your solution to the Gapped Genome Path String Problem passed all test cases so that you do not have any errors in combining the two reconstructed strings. 

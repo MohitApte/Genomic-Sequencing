@@ -1,0 +1,37 @@
+Construct the de Bruijn graph of a string.
+
+Input: An integer k and a string Text.
+
+Output: DeBruijnk(Text), in the form of an adjacency list.
+
+Given a genome Text, PathGraphk(Text) is the path consisting of |Text|-k+1 edges, where the i-th edge of this path is labeled by the i-th k-mer in Text and the i-th node of the path is labeled by the i-th (k-1)-mer in Text. The de Bruijn graph DeBruijnk(Text) is formed by gluing identically labeled nodes in PathGraphk(Text).  
+
+Input Format. The first line of the input contains an integer k. The second line of the input contains a string Text.
+
+
+Output Format. DeBruijnk(Text) in the form of an adjacency list. Specifically, each line of the output represents a single edge (u,v) in the format “u -> v” (no quotes), where u and v are both (k-1)-mers. The following would be an example of an edge corresponding to a 4-mer ACGT: ACG -> CGT. If a given node u has multiple edges leaving it (e.g. v and w), the destination nodes are comma-separated in any order. For example, if there exist nodes ACG, CGT, and CGG, the resulting line of the adjacency list would be: ACG -> CGT,CGG
+
+
+Input:
+
+3
+ACGTGTATA
+Output:
+
+AC -> CG
+CG -> GT
+GT -> TG,TA
+TG -> GT
+TA -> AT
+AT -> TA
+
+Each 3-mer of ACGTGTATA yields a single edge in the resulting de Bruijn graph:
+
+ACG: AC → CG
+CGT: CG → GT
+GTG: GT → TG
+TGT: TG → GT
+GTA: GT → TA
+TAT: TA → AT
+ATA: AT → TA
+Note that, because the node GT has two outgoing edges (GT → TA and GT → TG), the resulting line in the output is GT -> TA,TG

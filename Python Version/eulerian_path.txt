@@ -1,0 +1,32 @@
+Find an Eulerian path in a graph.
+
+Input: An directed graph Graph = {V,E} that contains an Eulerian path, where V is the set of vertices and E is the set of edges, in the form of an adjacency list.
+
+Output: An Eulerian path in Graph.
+
+In “Find an Eulerian Cycle in a Graph”, we defined an Eulerian cycle. A path that traverses each edge of a graph exactly once (but does not necessarily return to its starting node) is called an Eulerian path.
+
+Input Format. Each line in the input represents all of the edges leaving a given node u in the format u -> v,w,... For example, if there exist nodes (0,1), (0,2), and (0,3), the resulting line in the input would be 0 -> 1,2,3.
+
+Output Format. An Eulerian path in the input graph, in which nodes in the path are delimited by ->. For example, for a path from 0 to 1 to 2, the resulting output would be:
+
+0->1->2
+
+
+Constraints. |V| ≤ 100; |E| ≤ 100
+
+Input:
+
+0 -> 2
+1 -> 3
+2 -> 1
+3 -> 0,4
+6 -> 3,7
+7 -> 8
+8 -> 9
+9 -> 6
+Output:
+
+6->7->8->9->6->3->0->2->1->3->4
+
+The graph has been reproduced in the figure below. The green labels describe the edge order in the Eulerian path in the graph.

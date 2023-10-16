@@ -1,0 +1,51 @@
+Construct the de Bruijn graph from a collection of k-mers.
+
+Input: A collection of k-mers Patterns.
+
+Output: The de Bruijn graph DeBruijn(Patterns), in the form of an adjacency list.
+
+Given an arbitrary collection of k-mers Patterns (where some k-mers may appear multiple times), we define CompositionGraph(Patterns) as a graph with |Patterns| isolated edges. Every edge is labeled by a k-mer from Patterns, and the starting and ending nodes of an edge are labeled by the prefix and suffix of the k-mer labeling that edge. We then define the de Bruijn graph of Patterns, denoted DeBruijn(Patterns), by gluing identically labeled nodes in CompositionGraph(Patterns), which yields the following algorithm.
+
+    DEBRUIJN(Patterns)
+
+        represent every k-mer in Patterns as an isolated edge between its prefix and suffix
+
+        glue all nodes with identical labels, yielding the graph DeBruijn(Patterns)
+
+        return DeBruijn(Patterns)
+
+Input Format. The input contains a single k-mer on each line.
+
+Output Format. The de Bruijn graph DeBruijn(Patterns), in the form of an adjacency list. Specifically, each line of the output represents a single edge (u,v) in the format “u -> v” (no quotes), where u and v are both (k-1)-mers. The following would be an example of an edge corresponding to a 4-mer ACGT: ACG -> CGT. If a given node u has multiple edges leaving it (e.g. v and w), the destination nodes are comma-separated in any order. For example, if there exist nodes ACG, CGT, and CGG, the resulting line of the adjacency list would be: ACG -> CGT,CGG
+
+
+Constraints. 50 ≤ k ≤ 100; |Patterns| ≤ 1,000
+
+
+Input:
+
+GAGG
+CAGG
+GGGG
+GGGA
+CAGG
+AGGG
+GGAG
+Output:
+
+GAG -> AGG
+CAG -> AGG,AGG
+GGG -> GGG,GGA
+AGG -> GGG
+GGA -> GAG
+
+Each k-mer in Patterns yields a single edge in the resulting de Bruijn graph:
+
+GAGG: GAG → AGG
+CAGG: CAG → AGG
+GGGG: GGG → GGG
+GGGA: GGG → GGA
+CAGG: CAG → AGG
+AGGG: AGG → GGG
+GGAG: GGA → GAG
+Note that, because the node CAG has two outgoing edges (two instances of CAG → AGG), the resulting line in the output is CAG -> AGG,AGG. The same holds for the node GGG, which has an outgoing edge to GGA as well as to GGG
